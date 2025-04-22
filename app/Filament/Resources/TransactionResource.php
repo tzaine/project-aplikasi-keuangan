@@ -17,7 +17,7 @@ class TransactionResource extends Resource
 {
     protected static ?string $model = Transaction::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-credit-card';
 
     public static function form(Form $form): Form
     {
@@ -49,7 +49,10 @@ class TransactionResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('category_id')
+                Tables\Columns\IconColumn::make('category.pengeluaran')
+                    ->label('Pengeluaran')
+                    ->boolean(),
+                Tables\Columns\TextColumn::make('category.nama')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('tanggal')
