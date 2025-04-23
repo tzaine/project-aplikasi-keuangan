@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TransactionResource\Pages;
 use App\Filament\Resources\TransactionResource\RelationManagers;
+use App\Models\Category;
 use App\Models\Transaction;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -47,23 +48,28 @@ class TransactionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama')
-                    ->searchable(),
-                Tables\Columns\IconColumn::make('category.pengeluaran')
-                    ->label('Pengeluaran')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('category.nama')
-                    ->numeric()
+                Tables\Columns\ImageColumn::make('category.gambar')
+                    ->label('Kategori')
                     ->sortable(),
+                Tables\Columns\TextColumn::make('category.nama')
+                    ->description(fn (Transaction $record): string => $record->nama)
+                    ->label('Transaksi'),
+                Tables\Columns\IconColumn::make('category.pengeluaran')
+                    ->label('Tipe')
+                    ->trueIcon('heroicon-o-arrow-up-circle')
+                    ->falseIcon('heroicon-o-arrow-down-circle')
+                    ->trueColor('danger')
+                    ->falseColor('success')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('tanggal')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('jumlah')
                     ->numeric()
+                    ->money('IDR', locale:'id')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('catatan')
                     ->searchable(),
-                    Tables\Columns\ImageColumn::make('gambar'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
