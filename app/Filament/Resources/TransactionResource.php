@@ -35,12 +35,11 @@ class TransactionResource extends Resource
                 Forms\Components\TextInput::make('jumlah')
                     ->required()
                     ->numeric(),
-                Forms\Components\TextInput::make('catatan')
-                    ->required()
+                Forms\Components\TextInput::make('catatan')        
                     ->maxLength(255),
-                    Forms\Components\FileUpload::make('gambar')
-                    ->image()
-                    ->required(),
+                Forms\Components\FileUpload::make('gambar')
+                   ->required()
+                    ->image(),
             ]);
     }
 

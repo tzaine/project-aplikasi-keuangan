@@ -28,6 +28,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
-    }
+        Schema::table('transactions', function (Blueprint $table) {
+            // kembalikan ke NOT NULL jika rollback
+            $table->string('catatan')->nullable(false)->change();
+            $table->string('gambar')->nullable(false)->change();
+    });
+}
 };
