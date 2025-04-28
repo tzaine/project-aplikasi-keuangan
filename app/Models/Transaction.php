@@ -10,7 +10,7 @@ class Transaction extends Model
     protected $fillable = [
         'nama',
         'category_id',
-        'tanggal',
+        'date',
         'jumlah',
         'catatan',
         'gambar',

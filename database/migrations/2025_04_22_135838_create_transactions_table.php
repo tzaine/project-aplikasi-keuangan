@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete(); //ketika kategori dihapus maka transaksi nya juga terhapus
-            $table->date('tanggal');
+            $table->date('date');
             $table->integer('jumlah');
             $table->string('catatan');
             $table->string('gambar');

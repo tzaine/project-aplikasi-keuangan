@@ -30,7 +30,7 @@ class TransactionResource extends Resource
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'nama')
                     ->required(),
-                Forms\Components\DatePicker::make('tanggal')
+                Forms\Components\DatePicker::make('date')
                     ->required(),
                 Forms\Components\TextInput::make('jumlah')
                     ->required()
@@ -60,7 +60,8 @@ class TransactionResource extends Resource
                     ->trueColor('danger')
                     ->falseColor('success')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('tanggal')
+                Tables\Columns\TextColumn::make('date_transaction')
+                    ->label('Tanggal')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('jumlah')
