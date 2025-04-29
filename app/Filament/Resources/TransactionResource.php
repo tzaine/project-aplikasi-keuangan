@@ -29,16 +29,19 @@ class TransactionResource extends Resource
                     ->maxLength(255),
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'nama')
+                    ->label('kategori')
                     ->required(),
-                Forms\Components\DatePicker::make('date')
+                Forms\Components\DatePicker::make('date_transaction')
+                    ->label('Tanggal')
                     ->required(),
                 Forms\Components\TextInput::make('jumlah')
                     ->required()
                     ->numeric(),
-                Forms\Components\TextInput::make('catatan')        
+                Forms\Components\TextInput::make('catatan')  
+     
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('gambar')
-                   ->required()
+
                     ->image(),
             ]);
     }
