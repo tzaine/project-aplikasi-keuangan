@@ -24,12 +24,9 @@ class DashboardPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->brandName('SIKU : SISTEM INFORMASI KEUANGAN ')
+            ->brandName(' SISTEM INFORMASI KEUANGAN ')
             ->id('dashboard')
             ->path('dashboard')
-            ->registration()
-            ->passwordReset()
-            ->emailVerification()
             ->profile()
             ->login()
             ->colors([
