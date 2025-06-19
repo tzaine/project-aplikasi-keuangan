@@ -18,19 +18,19 @@ class Transaction extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function scopeExpenses($query)
     {
         return $query->whereHas('category', function ($query) {
-            $query->where('jumlah', true);
+            $query->where('pengeluaran', true);
         });
     }
     public function scopeIncomes($query)
     {
         return $query->whereHas('category', function ($query) {
-            $query->where('jumlah', false);
+            $query->where('pengeluaran', false);
         });
     }
 }

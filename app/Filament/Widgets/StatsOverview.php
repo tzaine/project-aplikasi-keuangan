@@ -7,13 +7,15 @@ use Filament\Widgets\Concerns\InteractsWithPageFilters;
 use App\Models\Transaction;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+// use App\Filament\Widgets\WidgetExpenseChart;
+// use App\Filament\Widgets\WidgetIncomeChart;
 
 class StatsOverview extends BaseWidget
 {
     use InteractsWithPageFilters;
     protected function getStats(): array
     {
-        $startDate = ! is_null($this->filters['startDate'] ?? null) ?
+          $startDate = ! is_null($this->filters['startDate'] ?? null) ?
             Carbon::parse($this->filters['startDate']) :
             null;
 
@@ -23,11 +25,11 @@ class StatsOverview extends BaseWidget
 
         $pemasukan = Transaction::incomes()
                         ->whereBetween('date_transaction', [$startDate, $endDate])
-                        ->sum('jumlah');
+                        ->sum( 'jumlah');
 
         $pengeluaran = Transaction::expenses()
                         ->whereBetween('date_transaction', [$startDate, $endDate])
-                        ->sum('jumlah');
+                        ->sum( 'jumlah');
         
         return [
             Stat::make('Total Pemasukan',  'Rp ' . number_format($pemasukan, 2, ',', '.'))

@@ -67,6 +67,7 @@ class TransactionResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('jumlah')
                     ->numeric()
+                    ->label('jumlah')   
                     ->money('IDR', locale:'id')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('catatan')
