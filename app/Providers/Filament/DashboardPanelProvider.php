@@ -29,6 +29,9 @@ class DashboardPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->brandName(' SISTEM INFORMASI KEUANGAN ')
+            ->brandLogo(asset('images/logo-siku.png'))
+            ->brandLogoHeight('5rem')
+            ->favicon(asset('images/logo-siku.png'))
             ->id('dashboard')
             ->path('dashboard')
             ->profile()
