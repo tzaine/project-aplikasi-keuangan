@@ -38,11 +38,9 @@ class TransactionResource extends Resource
                     ->required()
                     ->numeric(),
                 Forms\Components\TextInput::make('catatan')  
-     
-                    ->maxLength(255),
-                Forms\Components\FileUpload::make('gambar')
-
-                    ->image(),
+                ->maxLength(255),
+                //Forms\Components\FileUpload::make('gambar')
+                //->image(),
             ]);
     }
 

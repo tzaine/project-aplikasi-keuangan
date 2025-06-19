@@ -2,7 +2,7 @@
 
 namespace App\Filament\Widgets;
 
-use Carbon\Carbon;
+use \Carbon\Carbon;
 use Filament\Widgets\Concerns\InteractsWithPageFilters;
 use App\Models\Transaction;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;

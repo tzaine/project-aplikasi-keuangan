@@ -17,6 +17,10 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Widgets\StatsOverview;
+use App\Filament\Widgets\WidgetExpenseChart;
+use App\Filament\Widgets\WidgetIncomeChart;
+
 
 class DashboardPanelProvider extends PanelProvider
 {
@@ -37,7 +41,7 @@ class DashboardPanelProvider extends PanelProvider
             ->pages([])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+                //Widgets\AccountWidget::class,
                 //Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([

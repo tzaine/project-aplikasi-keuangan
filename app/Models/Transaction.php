@@ -13,7 +13,7 @@ class Transaction extends Model
         'date_transaction',
         'jumlah',
         'catatan',
-        'gambar',
+        //'gambar',
     ];
 
     public function category(): BelongsTo
@@ -24,13 +24,13 @@ class Transaction extends Model
     public function scopeExpenses($query)
     {
         return $query->whereHas('category', function ($query) {
-            $query->where('pengeluaran', true);
+            $query->where('jumlah', true);
         });
     }
     public function scopeIncomes($query)
     {
         return $query->whereHas('category', function ($query) {
-            $query->where('pengeluaran', false);
+            $query->where('jumlah', false);
         });
     }
 }
