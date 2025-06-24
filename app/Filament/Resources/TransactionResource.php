@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TransactionResource\Pages;
+use Filament\Tables\Actions\Action;
 use App\Filament\Resources\TransactionResource\RelationManagers;
 use App\Models\Category;
 use App\Models\Transaction;
@@ -47,6 +48,13 @@ class TransactionResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->headerActions([
+            Action::make('Download PDF')
+                ->label('Download PDF')
+                ->icon('heroicon-o-arrow-down-tray')
+                ->url(route('transactions.pdf'))
+                ->openUrlInNewTab(),
+        ])
             ->columns([
                 Tables\Columns\ImageColumn::make('category.gambar')
                     ->label('Kategori')
@@ -91,7 +99,10 @@ class TransactionResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            
+                
             ]);
+            
     }
 
     public static function getRelations(): array
