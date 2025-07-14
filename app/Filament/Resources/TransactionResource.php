@@ -61,6 +61,7 @@ class TransactionResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.nama')
                     ->description(fn (Transaction $record): string => $record->nama)
+                    ->searchable()
                     ->label('Transaksi'),
                 Tables\Columns\IconColumn::make('category.pengeluaran')
                     ->label('Tipe')

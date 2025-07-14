@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -25,7 +26,21 @@ class CategoryResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('nama')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->unique(table: Category::class, column: 'nama', ignoreRecord: true)
+                    ->live()
+                    ->afterStateUpdated(function (Forms\Set $set, ?string $state) {
+                        if (Category::where('nama', $state)->exists()) {
+                            Notification::make()
+                                ->warning()
+                                ->title('Kategori sudah ada')
+                                ->body('Nama kategori ini sudah dibuat sebelumnya')
+                                ->send();
+                        }
+                    })
+                    ->validationMessages([
+                        'unique' => 'Kategori ini sudah dibuat',
+                    ]),
                 Forms\Components\Toggle::make('pengeluaran')
                     ->required(),
                 Forms\Components\FileUpload::make('gambar')
